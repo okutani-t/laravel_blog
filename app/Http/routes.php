@@ -27,5 +27,9 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    // Route::get('/{name}', function($name) {
+    //     return 'hello!' . $name;
+    // });
+
+    Route::get('/', 'PostsController@index');
 });
