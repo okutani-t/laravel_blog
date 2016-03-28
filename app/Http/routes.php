@@ -30,9 +30,16 @@ Route::group(['middleware' => ['web']], function () {
     // Route::get('/{name}', function($name) {
     //     return 'hello!' . $name;
     // });
-
     Route::get('/', 'PostsController@index');
-    Route::get('/posts/create', 'PostsController@create');
-    Route::get('/posts/{id}', 'PostsController@show');
-    Route::post('/posts', 'PostsController@store');
+    # コメント
+    Route::post('/posts/{post}/comments', 'CommentsController@store');
+    Route::delete('posts/{post}/comments/{comment}', 'CommentsController@destroy');
+    // Route::get('/posts/create', 'PostsController@create');
+    // Route::get('/posts/{id}', 'PostsController@show');
+    // Route::get('/posts/{id}/edit', 'PostsController@edit');
+    // Route::post('/posts', 'PostsController@store');
+    // Route::patch('/posts/{id}', 'PostsController@update');
+    // Route::delete('/posts/{id}', 'PostsController@destroy');
+    # 記事
+    Route::resource('posts', 'PostsController');
 });

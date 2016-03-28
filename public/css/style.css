@@ -1,10 +1,8 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-family: Verdana, sans-serif;
+  font-family: Arial, Roboto, "Droid Sans", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
 }
-a {
+a:link, a:visited, a:hover, a:active {
+  color: dodgerblue;
   text-decoration: none;
 }
 .hidden {
@@ -16,15 +14,114 @@ a {
   color: green;
   background: skyblue;
 }
-.container {
-  width: 380px;
-  margin: 0 auto;
+.error {
+  font-size: 12px;
+  color: tomato;
+  padding: 3px 0;
+  display: block;
 }
 
-h1 {
-  font-size: 16px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+/* 05.アメリカンな(?)吹き出し */
+h1{
+	position:relative;
+  margin-bottom: 40px !important;
+	padding:5px 20px;
+	font:bold 28px/1.6 Arial, Helvetica, sans-serif;
+	color:#333;
+	background:#fff;
+	text-shadow:
+		1px 1px 0 #fff,
+		2px 2px 0 #999;
+	border-top:#333 solid 3px;
+	border-bottom:#333 solid 3px;
+    background-image: -webkit-gradient(linear, left top, right bottom,
+			from(			rgba(255, 255, 255, 0.0)),
+			color-stop(0.4, rgba(255, 255, 255, 0.0)),
+			color-stop(0.4, rgba(0, 0, 0, 0.1)),
+			color-stop(0.6, rgba(0, 0, 0, 0.1)),
+			color-stop(0.6, rgba(255, 255, 255, 0.0)),
+			to(				rgba(255, 255, 255, 0.0))
+			);
+	background-image: -webkit-linear-gradient(top -45deg,
+			transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+			);
+	background-image: -moz-linear-gradient(top -45deg,
+			transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+			);
+	background-image: -o-linear-gradient(top -45deg,
+			transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+			);
+	background-image: linear-gradient(to bottom -45deg,
+			transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+			);
+	background-size:4px 4px;
+}
+h1:before{
+	content:" ";
+	position:absolute;
+	top:100%;
+	left:24px;
+	width:0;
+	height:0;
+	border-width:12px;
+	border-style:solid;
+	border-color:transparent;
+	border-top-color:#333;
+}
+h1:after{
+	content:" ";
+	position:absolute;
+	top:100%;
+	left:28px;
+	width:0;
+	height:0;
+	border-width:8px;
+	border-style:solid;
+	border-color:transparent;
+	border-top-color:#f0f0f0;
+	z-index:1;
+}
+
+h2 {
+  color: #444;
+  font-size: 24px !important;
+  margin-bottom: 30px !important;
+  position: relative;
+  padding: 10px 0 5px 28px;
+  border-bottom: 2px solid #d14;
+}
+h2:before, h2:after {
+  content: "";
+  position: absolute;
+  margin: auto;
+}
+h2:before {
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 14px;
+  background: #d14;
+  transform: rotate(50deg);
+}
+h2:after {
+  width: 8px;
+  height: 8px;
+  top: 18px;
+  left: 6px;
+  background: #d14;
+  transform: rotate(20deg);
 }
 
 ul > li {
@@ -62,12 +159,54 @@ blockquote::before {
 }
 
 input[type=text] {
-  width: 200px;
-  padding: 5px;
+  padding: 10px;
 }
-input[type=submit] {
-  width: 100px;
+
+
+/* seriesリスト */
+.series_list {
+  padding: 25px 30px !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 1px #ccc;
+  list-style-position: inside;
+  counter-reset: series-count;
+  margin: 0;
 }
-textarea {
-  padding: 5px;
+.series_list li {
+  margin: 5px 0 20px;
+  padding-left: 35px;
+  line-height: 1.7 !important;
+  position: relative;
+  list-style:none;
+}
+/* 連番部分 */
+.series_list li::before {
+  counter-increment: series-count;
+  content: counter(series-count);
+  background: #afd9c0;
+  width: 24px;
+  height:  24px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+/* Series文字部分 */
+.series_list li:first-child::after {
+  content: "新着記事一覧";
+  display: block;
+  position: absolute;
+  top: -48px;
+  left: 5px;
+  padding: 0 15px;
+  background: #fff;
+  font-size: 20px;
+  color: #444;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
 }
