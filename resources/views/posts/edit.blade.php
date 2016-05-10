@@ -11,30 +11,29 @@
 <h2>
     記事を編集！
 </h2>
+{!! Form::open(['url' => ['/posts', $post->id], 'class' => "form-group",]) !!}
+  {{ method_field('patch') }}
+  <p>
+    {!! Form::text('title', old('title', $post->title), ['class' => 'form-control', 'placeholder' => 'title']) !!}
+    @if ($errors->has('title'))
+    <span class="error">{{ $errors->first('title') }}</span>
+    @endif
+  </p>
+  <p>
 
-<form action="{{ url('/posts', $post->id) }}" method="post" class="form-group">
-    {{ csrf_field() }}
-    {{ method_field('patch') }}
-    <p>
-        <input type="text" class="form-control" name="title" placeholder="title" value="{{ old('title', $post->title) }}">
-        @if ($errors->has('title'))
-            <span class="error">{{ $errors->first('title') }}</span>
-        @endif
-    </p>
-    <p>
-        <textarea name="body" class="form-control" rows="8" cols="40" placeholder="body">{{ old('body', $post->body) }}</textarea>
-        @if ($errors->has('body'))
-            <span class="error">{{ $errors->first('body') }}</span>
-        @endif
-    </p>
-    <p>
-        <textarea name="summary" class="form-control" rows="2" cols="40" placeholder="summary">{{ old('summary', $post->summary) }}</textarea>
-        @if ($errors->has('summary'))
-            <span class="error">{{ $errors->first('summary') }}</span>
-        @endif
-    </p>
-    <p>
-        <input type="submit" value="Update" class="btn btn-success">
-    </p>
-</form>
+    {!! Form::textarea('body', old('body', $post->body), ['class' => 'form-control', 'placeholder' => 'body', 'size' => '40x8']) !!}
+    @if ($errors->has('body'))
+    <span class="error">{{ $errors->first('body') }}</span>
+    @endif
+  </p>
+  <p>
+    {!! Form::textarea('summary', old('summary', $post->summary), ['class' => 'form-control', 'placeholder' => 'summary', 'size' => '40x2']) !!}
+    @if ($errors->has('summary'))
+    <span class="error">{{ $errors->first('summary') }}</span>
+    @endif
+  </p>
+  <p>
+    {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
+  </p>
+  {!! Form::close() !!}
 @endsection

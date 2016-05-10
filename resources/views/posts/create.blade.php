@@ -3,32 +3,31 @@
 @section('title', 'Add New')
 
 @section('content')
-<h1>
+  <h1>
     <a href="{{ asset('/') }}" class="pull-right fs12">Back</a>
     Add New
-</h1>
-<form action="{{ url('/posts') }}" method="post" class="form-group">
-    {{ csrf_field() }}
-    <p>
-        <input type="text" class="form-control" name="title" placeholder="title" value="{{ old('title') }}">
-        @if ($errors->has('title'))
-            <span class="error">{{ $errors->first('title') }}</span>
-        @endif
-    </p>
-    <p>
-        <textarea name="body" class="form-control" rows="8" cols="40" placeholder="body">{{ old('body') }}</textarea>
-        @if ($errors->has('body'))
-            <span class="error">{{ $errors->first('body') }}</span>
-        @endif
-    </p>
-    <p>
-        <textarea name="summary" class="form-control" rows="2" cols="40" placeholder="summary">{{ old('summary') }}</textarea>
-        @if ($errors->has('summary'))
-            <span class="error">{{ $errors->first('summary') }}</span>
-        @endif
-    </p>
-    <p>
-        <input type="submit" class="btn btn-primary" value="Add New">
-    </p>
-</form>
+  </h1>
+  {!! Form::open(['url' => '/posts', 'class' => "form-group"]) !!}
+  <p>
+    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => 'title']) !!}
+    @if ($errors->has('title'))
+    <span class="error">{{ $errors->first('title') }}</span>
+    @endif
+  </p>
+  <p>
+    {!! Form::textarea('body', old('body'), ['class' => 'form-control', 'placeholder' => 'body', 'size' => '40x8']) !!}
+    @if ($errors->has('body'))
+    <span class="error">{{ $errors->first('body') }}</span>
+    @endif
+  </p>
+  <p>
+    {!! Form::textarea('summary', old('summary'), ['class' => 'form-control', 'placeholder' => 'summary', 'size' => '40x2']) !!}
+    @if ($errors->has('summary'))
+    <span class="error">{{ $errors->first('summary') }}</span>
+    @endif
+  </p>
+  <p>
+    {!! Form::submit('Add New', ['class' => 'btn btn-primary']) !!}
+  </p>
+  {!! Form::close() !!}
 @endsection

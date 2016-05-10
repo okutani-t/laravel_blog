@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     // });
     Route::get('/', 'PostsController@index');
     # コメント
-    Route::post('/posts/{post}/comments', 'CommentsController@store');
+    Route::post('posts/{post}/comments', 'CommentsController@store');
     Route::delete('posts/{post}/comments/{comment}', 'CommentsController@destroy');
     // Route::get('/posts/create', 'PostsController@create');
     // Route::get('/posts/{id}', 'PostsController@show');
